@@ -1,0 +1,55 @@
+import { type Component, createSignal } from 'solid-js'
+// import electronLogo from './assets/img/electron.svg'
+
+import Quotes from './components/Quotes'
+import { type QuoteProps, QuoteStatus } from './components/Quotes'
+
+import Navbar from './components/Navbar'
+// import Title from './components/Title'
+
+const App: Component = () => {
+	// const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')	
+
+	let quotesData: QuoteProps[] = [
+		{ id: 1, name: 'Keyboard Cat', date: '15/12/23', reference: 'Malt', price: 3150, deposit: 0, status: QuoteStatus.Waiting },
+		{ id: 2, name: 'Keyboard Bob', date: '16/12/23', reference: 'Malt', price: 2800, deposit: 0, status: QuoteStatus.Accepted },
+		{ id: 3, name: 'Keyboard Charlie', date: '17/12/23', reference: 'Malt', price: 2800, deposit: 0, status: QuoteStatus.Signed },
+	];
+
+	return (
+		<>
+
+			<Navbar />
+
+			<div class="container py-4 mx-auto">
+
+				{/* <Title title={"Hello Bootstrap and Vite. It's amasing!"} /> */}
+				<h1 class="display-4 text-center">Devis</h1>
+
+				{/* <img alt="logo" class="logo" src={electronLogo} /> */}
+				{/* <div class="creator">Powered by electron-vite</div>
+				<div class="text">
+					Build an Electron app with <span class="solid">Solid</span>
+					&nbsp;and <span class="ts">TypeScript</span>
+
+					<p>Test</p>
+				</div> */}
+
+				{/* <p class="tip">Please try pressing <code>F12</code> to open the devTool</p>
+			<div class="actions">
+				<div class="action">
+					<a href="https://electron-vite.org/" target="_blank" rel="noreferrer">Documentation</a>
+				</div>
+				<div class="action">
+					<a target="_blank" rel="noreferrer" onClick={ipcHandle}>Send IPC</a>
+				</div>
+			</div> */}
+
+				<Quotes quotes={quotesData} />
+
+			</div>
+		</>
+	)
+}
+
+export default App
