@@ -27,7 +27,8 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "5.3.3",
     "electron-updater": "^6.1.7",
-    "sass": "^1.71.1"
+    "sass": "^1.71.1",
+    "solid-icons": "^1.1.0"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",

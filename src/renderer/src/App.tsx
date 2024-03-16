@@ -1,8 +1,8 @@
 import { type Component, createSignal } from 'solid-js'
 // import electronLogo from './assets/img/electron.svg'
 
-import Quotes from './components/Quotes'
-import { type QuoteProps, QuoteStatus } from './components/Quotes'
+import QuotesTable from './components/QuotesTable'
+import { QuoteData, QuoteStatus, getKeyStatus } from './types'
 
 import Navbar from './components/Navbar'
 // import Title from './components/Title'
@@ -10,10 +10,10 @@ import Navbar from './components/Navbar'
 const App: Component = () => {
 	// const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')	
 
-	let quotesData: QuoteProps[] = [
-		{ id: 1, name: 'Keyboard Cat', date: '15/12/23', reference: 'Malt', price: 3150, deposit: 0, status: QuoteStatus.Waiting },
-		{ id: 2, name: 'Keyboard Bob', date: '16/12/23', reference: 'Malt', price: 2800, deposit: 0, status: QuoteStatus.Accepted },
-		{ id: 3, name: 'Keyboard Charlie', date: '17/12/23', reference: 'Malt', price: 2800, deposit: 0, status: QuoteStatus.Signed },
+	const quotesData: QuoteData[] = [
+		{ id: 1, name: 'Keyboard Cat', date: '15/12/23', reference: 'Malt', price: 3150, deposit: 0, status: getKeyStatus(QuoteStatus.Waiting) },
+		{ id: 2, name: 'Keyboard Bob', date: '16/12/23', reference: 'Malt', price: 2800, deposit: 0, status: getKeyStatus(QuoteStatus.Signed) },
+		{ id: 3, name: 'Keyboard Charlie', date: '17/12/23', reference: 'Malt', price: 2800, deposit: 0, status: getKeyStatus(QuoteStatus.Signed) },
 	];
 
 	return (
@@ -45,7 +45,7 @@ const App: Component = () => {
 				</div>
 			</div> */}
 
-				<Quotes quotes={quotesData} />
+				<QuotesTable quotes={quotesData} />
 
 			</div>
 		</>
