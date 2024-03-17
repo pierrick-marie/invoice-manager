@@ -1,18 +1,11 @@
-import { For, Switch, Match, createSignal } from 'solid-js'
-import { QuoteData, QuoteStatus, getValueStatus, getKeyStatus } from '@renderer/types'
-import { CircleSigned, CircleWaiting, CircleDenied } from './Circles'
+import { For, createSignal } from 'solid-js'
+import { QuoteData, QuoteStatus } from '@renderer/types'
+// import { Waiting, Denied, Signed } from './Circles'
+import { CircleStatus, circleBuilder, getCircleKeyFromValue } from './Circles';
 
 export default function QuoteRow({ quote }: { quote: QuoteData }) {
 
-	const [status, setStatus] = createSignal<string>(quote.status);
-
-	// console.log(Object.values(QuoteStatus))
-	// console.log(Object.keys(QuoteStatus))
-	// console.log(quote.status)
-	// console.log(status())
-	// console.log(quote)
-	// console.log(getValueStatus(status()))
-	// console.log(status().)
+	const [status, setStatus] = createSignal<QuoteStatus>(quote.status);
 
 	return (
 		<tr>
@@ -23,27 +16,26 @@ export default function QuoteRow({ quote }: { quote: QuoteData }) {
 			<td>{quote.price}</td>
 			<td>{quote.deposit}</td>
 			<td>
-				<select class="form-select" value={ status() }
-					onInput={e => { 
-						console.log(e.currentTarget.value)
-						setStatus(e.currentTarget.value)
+				<select class="form-select"
+					value={ getCircleKeyFromValue(status().name) }
+
+					onInput={e => {
+						const name: string = e.currentTarget.value
+						const newStatus: QuoteStatus = circleBuilder(CircleStatus[name])
+
+						setStatus(newStatus)
 					}}>
-					<For each={Object.keys(QuoteStatus)}>{
-						(status) => <option value={status}>{ getValueStatus(status) }</option>
+					<For each={Object.keys(CircleStatus)}>{
+						(status) => {
+							return (
+								<option value={status}>{CircleStatus[status]}</option>
+							)
+						}
 					}</For>
 				</select>
 			</td>
 			<td>
-				{/* { getValueStatus(status()) } */}
-
-				<Switch fallback={<CircleDenied />} match={status()}>
-					<Match when={status() === getKeyStatus(QuoteStatus.Signed)} >
-						<CircleSigned />
-					</Match>
-					<Match when={status() === getKeyStatus(QuoteStatus.Waiting)}>
-						<CircleWaiting />
-					</Match>
-				</Switch>
+				{status().render()}
 			</td>
 		</tr>
 	)

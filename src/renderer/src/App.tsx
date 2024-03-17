@@ -1,8 +1,9 @@
-import { type Component, createSignal } from 'solid-js'
+import { type Component } from 'solid-js'
 // import electronLogo from './assets/img/electron.svg'
 
 import QuotesTable from './components/QuotesTable'
-import { QuoteData, QuoteStatus, getKeyStatus } from './types'
+import { QuoteData } from './types'
+import { CircleStatus, circleBuilder } from './components/Circles'
 
 import Navbar from './components/Navbar'
 // import Title from './components/Title'
@@ -11,9 +12,9 @@ const App: Component = () => {
 	// const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')	
 
 	const quotesData: QuoteData[] = [
-		{ id: 1, name: 'Keyboard Cat', date: '15/12/23', reference: 'Malt', price: 3150, deposit: 0, status: getKeyStatus(QuoteStatus.Waiting) },
-		{ id: 2, name: 'Keyboard Bob', date: '16/12/23', reference: 'Malt', price: 2800, deposit: 0, status: getKeyStatus(QuoteStatus.Signed) },
-		{ id: 3, name: 'Keyboard Charlie', date: '17/12/23', reference: 'Malt', price: 2800, deposit: 0, status: getKeyStatus(QuoteStatus.Signed) },
+		{ id: 1, name: 'Keyboard Cat', date: '15/12/23', reference: 'Malt', price: 3150, deposit: 0, status: circleBuilder(CircleStatus.Waiting) },
+		{ id: 2, name: 'Keyboard Bob', date: '16/12/23', reference: 'Malt', price: 2800, deposit: 0, status: circleBuilder(CircleStatus.Signed) },
+		{ id: 3, name: 'Keyboard Charlie', date: '17/12/23', reference: 'Malt', price: 2800, deposit: 0, status: circleBuilder(CircleStatus.Denied) },
 	];
 
 	return (
