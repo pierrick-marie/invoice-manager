@@ -41,10 +41,10 @@ const App: Component = () => {
 				<div class="action">
 					<a href="https://electron-vite.org/" target="_blank" rel="noreferrer">Documentation</a>
 				</div>
-				<div class="action">
+			*/}
+				{/* <div class="action">
 					<a target="_blank" rel="noreferrer" onClick={ipcHandle}>Send IPC</a>
-				</div>
-			</div> */}
+				</div> */}
 
 				<QuotesTable quotes={quotesData} />
 

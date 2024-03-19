@@ -14,3 +14,13 @@ export interface QuoteData {
 	deposit: number
 	status: QuoteStatus
 }
+
+export function removeQuote (quote: QuoteData): void {
+	console.log(`Delete: `)
+	console.log(quote)
+}
+
+export function saveQuote (quote: QuoteData): void {
+	console.log(`Save: `)
+	console.log(quote)	
+}

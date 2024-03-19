@@ -1,6 +1,7 @@
 import { For } from 'solid-js'
 import { QuoteData } from '@renderer/types'
 import QuoteRow from './QuoteRow'
+import NewQuote from './NewQuote'
 
 export default function QuotesTable(props: { quotes: QuoteData[] }) {
 
@@ -16,12 +17,14 @@ export default function QuotesTable(props: { quotes: QuoteData[] }) {
 					<th scope="col">Acompte</th>
 					<th scope="col">Statu</th>
 					<th scope="col"></th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<For each={props.quotes}>{(quote) =>
 					<QuoteRow quote={ quote } />
 				}</For>
+				<NewQuote id={ props.quotes.length + 1 }/>
 			</tbody>
 		</table>
 	)
